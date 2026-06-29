@@ -293,8 +293,16 @@ export default function App() {
         </div>
         {loading ? (
           <p className="text-slate-400 text-sm text-center">Loading opportunities...</p>
+        ) : filtered.length === 0 ? (
+          <div className="flex flex-col items-center justify-center py-20 gap-3">
+            <div className="w-14 h-14 rounded-2xl bg-slate-800/60 border border-slate-700 flex items-center justify-center">
+              <Briefcase size={24} className="text-slate-600" />
+            </div>
+            <p className="text-slate-400 text-sm font-semibold">No opportunities found</p>
+            <p className="text-slate-600 text-xs">Try a different filter</p>
+          </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 [&:has(>:only-child)]:sm:grid-cols-1 [&:has(>:only-child)>*]:sm:max-w-md [&:has(>:only-child)>*]:sm:mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 ...">
             {filtered.map(opp => <OpportunityCard key={opp.id} opp={opp} onView={setSelected} />)}
           </div>
         )}
